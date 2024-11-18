@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = 3000;
@@ -8,18 +9,17 @@ app.get('/', (req, res) => {
     res.status(200).send('Hi there!');
 });
 app.get('/name', (req, res) => {
-    res.status(200).send('My name is sara Hailu');
+    res.status(200).send(process.env.FULL_NAME);
 });
 
-// Route: /hobby
 app.get('/hobby', (req, res) => {
-    res.status(200).json({ hobby: 'I like watching movies and podcasts' });
+    res.status(200).json({ hobby: process.env.FAVORITE_HOBBY });
 });
 
-// Route: /dream
 app.get('/dream', (req, res) => {
-    res.status(200).send('The future belongs to those who prepare for it today');
+    res.status(200).send(process.env.MOTIVATIONAL_MESSAGE);
 });
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
